@@ -1,7 +1,5 @@
 # CustomerCapture - Development Environment Setup Guide
 
-This is an [Expo](https://expo.dev) managed application project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
 ## Required Administrator Permissions
 Students will need administrator permissions for:
 1. Installing Node.js and npm
