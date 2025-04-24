@@ -1,141 +1,181 @@
-# CustomerCapture - Development Environment Setup Guide
+# CustomerCapture – Development Environment Setup Guide
 
 ## Required Administrator Permissions
 Students will need administrator permissions for:
 1. Installing Node.js and npm
 2. Installing Android Studio and SDKs
 3. Setting system environment variables
-4. Installing global npm packages
-5. Running Android emulators
+4. Running Android emulators
+
+> **Note:** Installing expo-CLI globally is **optional** – you can always run Expo commands via `npx` without admin rights.
+
+---
 
 ## System Requirements
 - Windows 10/11 or macOS 12+
-- Minimum 8GB RAM (16GB recommended)
-- At least 20GB free disk space
+- Minimum 8 GB RAM (16 GB recommended)
+- At least 20 GB free disk space
 - Intel or AMD processor with virtualization support
 - Virtualization enabled in BIOS (for Android emulator)
 
+---
+
 ## Complete Setup Instructions
 
-### 1. Node.js Installation (Admin Required)
-1. Download Node.js LTS version (18.x or later) from https://nodejs.org/
-2. Run the installer with administrator privileges
-3. Verify installation:
+### 1. Node.js Installation
+1. Download Node.js LTS (v18.x or later) from https://nodejs.org/
+2. Run the installer.
+3. Verify:
    ```bash
    node --version
    npm --version
    ```
 
-### 2. Android Studio Setup (Admin Required)
-1. Download Android Studio from https://developer.android.com/studio
-2. Run the installer with administrator privileges
-3. During installation, ensure the following components are selected:
+### 2. Android Studio Setup
+1. Download Android Studio from https://developer.android.com/studio  
+2. Run the installer.
+3. In the components selection, ensure:
    - Android SDK
    - Android SDK Platform
    - Android Virtual Device
-   - Performance (Intel HAXM)
-4. After installation, open Android Studio and install additional components:
-   - Open Tools → SDK Manager
-   - Under "SDK Platforms," select:
-     - Android 14.0 (API Level 34)
-     - Android 13.0 (API Level 33)
-   - Under "SDK Tools," select:
-     - Android SDK Build-Tools
-     - Android Emulator
-     - Android SDK Platform-Tools
-     - Intel x86 Emulator Accelerator (HAXM)
+   - Intel HAXM (or appropriate AMD alternative)
+4. After launch:
+   1. **Tools → SDK Manager**  
+   2. Under **SDK Platforms**, install:
+      - Android 14.0 (API Level 34)
+      - Android 13.0 (API Level 33)  
+   3. Under **SDK Tools**, ensure:
+      - Android SDK Build-Tools
+      - Android Emulator
+      - Android SDK Platform-Tools
+      - Intel x86 Emulator Accelerator (HAXM) *or* AMD Hypervisor driver
 
-### 3. Environment Variables Setup (Admin Required)
-1. Add ANDROID_HOME environment variable:
-   - Windows: `%LOCALAPPDATA%\Android\Sdk`
-   - macOS/Linux: `$HOME/Library/Android/sdk`
-2. Add platform-tools to PATH:
-   - Windows: `%LOCALAPPDATA%\Android\Sdk\platform-tools`
-   - macOS/Linux: `$HOME/Library/Android/sdk/platform-tools`
+### 3. Environment Variables Setup
+1. **ANDROID_HOME**  
+   - **Windows:**  
+     - Open System Properties → Advanced → Environment Variables  
+     - New **User** or **System** variable  
+       ```
+       Name: ANDROID_HOME  
+       Value: %LOCALAPPDATA%\Android\Sdk
+       ```
+   - **macOS/Linux:**  
+     ```bash
+     echo 'export ANDROID_HOME=$HOME/Library/Android/sdk' >> ~/.bash_profile
+     echo 'export PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.bash_profile
+     source ~/.bash_profile
+     ```
+2. **Add `platform-tools` to PATH**  
+   - Windows variable **Path**:  
+     ```
+     %LOCALAPPDATA%\Android\Sdk\platform-tools
+     ```
+   - macOS/Linux, see above.
 
-### 4. Install Expo CLI (Admin Required for Global Install)
-```bash
-npm install -g expo-cli
-```
+> **Tip:** After setting variables, open a **new** terminal and run `adb --version` to confirm.
+
+### 4. Expo CLI Installation *(Optional Global Install)*
+You can either:
+- **Globally** install (requires admin):
+  ```bash
+  npm install -g expo-cli
+  ```
+- **Or** use `npx` (no admin needed):
+  ```bash
+  # in your project folder
+  npx expo start
+  ```
 
 ### 5. Create Android Virtual Device (AVD)
-1. Open Android Studio
-2. Click "More Actions" → "Virtual Device Manager"
-3. Click "Create Virtual Device"
-4. Select "Pixel 7" (or any other phone)
-5. Download and select system image (API 34 recommended)
-6. Complete the AVD creation
+1. In Android Studio, select **More Actions → Virtual Device Manager**  
+2. **Create Virtual Device** → choose **Pixel 7** (or similar)  
+3. Download a **system image** (API 34 recommended)  
+4. Finish setup  
 
-### 6. Project Setup
-1. Clone this repository
-2. Navigate to the project directory
-3. Install dependencies:
+---
+
+## Project Setup & Running
+
+1. **Clone** this repository  
+   ```bash
+   git clone https://github.com/your-org/CustomerCapture.git
+   cd CustomerCapture
+   ```
+2. **Install dependencies**  
    ```bash
    npm install
    ```
+3. **Start the app**  
+   - Launch your Android emulator (AVD)  
+   - Run:
+     ```bash
+     # if you installed expo-cli globally
+     expo start
+     # otherwise
+     npx expo start
+     ```
+   - Press **a** to open on the Android emulator, or scan the QR code in Expo Go on your device.
 
-### 7. Running the App
-1. Start the Android emulator
-2. In the project directory, run:
-   ```bash
-   npx expo start
-   ```
-3. Press 'a' to open in Android emulator
+---
 
 ## Troubleshooting Common Issues
 
+### “Cannot find module '…\expo\bin\cli'”  
+- **Cause:** expo-CLI isn’t installed globally, but you ran `expo start`.  
+- **Fix:**  
+  - Run `npx expo start` instead of `expo start`  
+  - Or install locally as a dev dependency:
+    ```bash
+    npm install --save-dev expo-cli
+    ```
+  - Then you can run `npx expo start` or add an npm script:
+    ```json
+    // package.json
+    "scripts": {
+      "start": "expo start"
+    }
+    ```
+    and run:
+    ```bash
+    npm run start
+    ```
+
 ### Android Emulator Performance
-- Enable Hardware Acceleration in BIOS
-- Ensure Intel HAXM is installed
-- Allocate more RAM to the emulator
+- Ensure virtualization (Intel HAXM or AMD Hypervisor) is enabled in BIOS  
+- Allocate ≥ 2 GB RAM to the AVD  
+- Close other heavy applications  
 
 ### NPM Installation Issues
-- Clear npm cache: `npm cache clean --force`
-- Ensure network proxy settings are correct
-- Check firewall settings
+- `npm cache clean --force`  
+- Verify proxy/firewall allows npm registry  
 
 ### Expo Connection Issues
-- Ensure Android emulator is running before starting Expo
-- Check if ADB is running: `adb devices`
-- Restart the development server
+- Start emulator **before** `expo start`  
+- `adb devices` should list your emulator  
+- Restart Metro bundler: close the terminal, then `npm run start`/`npx expo start`  
+
+---
 
 ## Network Requirements
 - Unrestricted access to:
-  - npmjs.com
-  - expo.dev
-  - github.com
-  - Google Play services
-- No blocking of localhost ports (19000-19002)
+  - `npmjs.com`
+  - `expo.dev`
+  - `github.com`
+  - Google Play services  
+- Ensure localhost ports **19000–19002** are open
+
+---
 
 ## Learn More
+- [Expo docs](https://docs.expo.dev/)  
+- [Expo tutorial](https://docs.expo.dev/tutorial/introduction/)  
+- [Expo Discord](https://chat.expo.dev)  
 
-To learn more about developing with Expo, check out these resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals and advanced topics
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Step-by-step tutorial for creating universal apps
-- [Expo Discord community](https://chat.expo.dev): Get help from other developers
-- [Expo on GitHub](https://github.com/expo/expo): View the open source platform
+## Get Started
+1. `npm install`  
+2. `npx expo start`  
+3. Edit files in the **app/** directory (file-based routing)
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
