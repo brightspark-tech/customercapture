@@ -258,49 +258,67 @@ Now, let's create the home screen with navigation options:
 
 2. **Modify the app/index.tsx file**
    ```typescript
-   import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
-   import Ionicons from "@expo/vector-icons/Ionicons";
-   import { useRouter } from "expo-router";
+   import { Text, View, SafeAreaView } from "react-native";
 
-   // Import constants
-   import colors from "@/constants/colors";
-   import styles from "@/constants/styles";
-
-   export default function Index() {
-     const router = useRouter();
-
-     const onAddCustomer = () => {
-       router.push("/add");
-     }
-
-     const onAllCustomers = () => {
-       router.push("/AllCustomers")
-     }
-
-     return (
-       <SafeAreaView style={styles.container}>
-         <View>
-           <Text style={styles.h1}>Customer Capture</Text>
-         </View>
-         <View style={styles.cardGroup}>
-           <TouchableOpacity style={styles.cardContainer} onPress={onAddCustomer}>
-             <View style={styles.cardHeader}>
-               <Ionicons name="add-circle-outline" size={24} color={colors.white} />
-               <Text style={styles.cardHeaderText}>Add New Customer</Text>
-             </View>
-           </TouchableOpacity>
-
-           <TouchableOpacity style={styles.cardContainer} onPress={onAllCustomers}>
-             <View style={styles.cardHeader}>
-               <Ionicons name="eye" size={24} color={colors.white} />
-               <Text style={styles.cardHeaderText}>View All Customers</Text>
-             </View>
-           </TouchableOpacity>
-         </View>
-       </SafeAreaView>
-     );
-   }
+    export default function Index() {
+      return (
+        <SafeAreaView>
+          <View>
+            <Text>Welcome to the Customer Capture App!</Text>
+          </View>
+        </SafeAreaView>
+      );
+    }
    ```
+
+3. **Create a new file: AllCustomers.tsx**
+  ```typescript
+    import { Text, View, SafeAreaView } from "react-native";
+
+    export default function AllCustomers() {
+      return (
+        <SafeAreaView>
+          <View>
+            <Text>All Customers Screen</Text>
+          </View>
+        </SafeAreaView>
+      );
+    }
+  ```
+
+4. **Create a new file: AddCustomer.tsx**
+  ```typescript
+    import { Text, View, SafeAreaView } from "react-native";
+
+    export default function AddCustomer() {
+      return (
+        <SafeAreaView>
+          <View>
+            <Text>Add Customer Screen</Text>
+          </View>
+        </SafeAreaView>
+      );
+    }
+  ```
+
+5. **Integrate these screens into the layout file**
+  1. Open the _layout.tsx file
+  2. Update it to use the new screens
+  ```typescript
+  import { Stack } from "expo-router";
+
+  export default function Layout() {
+    return (
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="AllCustomers" options={{ title: "All Customers" }} />
+        <Stack.Screen name="add" options={{ title: "Add Customer" }} />
+      </Stack>
+    );
+  }
+  ```
+
+
 
 ## Creating the Form Context
 
