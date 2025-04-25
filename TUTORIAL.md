@@ -685,7 +685,7 @@ Now, let's create the home screen with navigation options:
           </SafeAreaView>
       );
   }
-   ```
+  ```
 
 ## Creating the Form Context
 
