@@ -318,7 +318,210 @@ Now, let's create the home screen with navigation options:
   }
   ```
 
+## Updating the index and add screens
+1. **Open index.tsx and modify the file**
+```typescript
+  import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+  import Ionicons from "@expo/vector-icons/Ionicons";
+  import { useRouter } from "expo-router";
 
+  // Import constants
+  import colors from "@/constants/colors";
+  import styles from "@/constants/styles";
+
+  export default function Index() {
+    const router = useRouter();
+
+    const onAddCustomer = () => {
+      router.push("/add");
+    };
+
+    const onAllCustomers = () => {
+      router.push("/AllCustomers");
+    };
+
+    return (
+      <SafeAreaView style={styles.container}>
+        <View>
+          <Text style={styles.h1}>Customer Capture</Text>
+        </View>
+        <View style={styles.cardGroup}>
+          <TouchableOpacity style={styles.cardContainer} onPress={onAddCustomer}>
+            <View style={styles.cardHeader}>
+              <Ionicons name="add-circle-outline" size={24} color={colors.white} />
+              <Text style={styles.cardHeaderText}>Add New Customer</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.cardContainer} onPress={onAllCustomers}>
+            <View style={styles.cardHeader}>
+              <Ionicons name="eye" size={24} color={colors.white} />
+              <Text style={styles.cardHeaderText}>View All Customers</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
+  ```
+## Updating the Add Screen
+
+1. **Open the `AddCustomer.tsx` file** and replace its content with the following:
+
+   ```typescript
+   import { Text, View, SafeAreaView, TouchableOpacity, TextInput, Button, KeyboardAvoidingView, Platform } from "react-native";
+   import Ionicons from "@expo/vector-icons/Ionicons";
+   import React, { useState } from "react";
+   import { useRouter } from "expo-router";
+
+   // Import constants
+   import colors from "@/constants/colors";
+   import styles from "@/constants/styles";
+
+   export default function AddCustomer() {
+     const [firstName, setFirstName] = useState("");
+     const [lastName, setLastName] = useState("");
+     const [address1, setAddress1] = useState("");
+     const [address2, setAddress2] = useState("");
+     const [city, setCity] = useState("");
+     const [state, setState] = useState("");
+     const [zip, setZip] = useState("");
+     const [error, setError] = useState({
+       hasError: false,
+       field: "",
+       errorMessage: "",
+     });
+
+     const router = useRouter();
+
+     const onBack = () => {
+       router.back();
+     };
+
+     const next = () => {
+       if (!firstName) {
+         setError({
+           hasError: true,
+           field: "firstName",
+           errorMessage: "First name is required",
+         });
+         return;
+       }
+
+       // Navigate to the next screen with form data as parameters
+       router.push({
+         pathname: "/add2",
+         params: {
+           firstName,
+           lastName,
+           address1,
+           address2,
+           city,
+           state,
+           zip,
+         },
+       });
+     };
+
+     return (
+       <KeyboardAvoidingView
+         behavior={Platform.OS === "ios" ? "padding" : "padding"}
+         style={styles.keyboardAvoidContainer}
+         keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 200}
+       >
+         <SafeAreaView style={styles.container}>
+           <View style={styles.screenHeader}>
+             <TouchableOpacity style={styles.backButton} onPress={onBack}>
+               <Ionicons name="arrow-back-outline" size={24} color={colors.text} />
+             </TouchableOpacity>
+             <Text style={styles.h1}>Add New Customer</Text>
+           </View>
+
+           <View style={styles.formContainer}>
+             <View style={styles.inputSplit}>
+               <View style={styles.inputSplitContainer}>
+                 <TextInput
+                   placeholder="First Name"
+                   style={[styles.input, error.hasError && styles.inputError]}
+                   value={firstName}
+                   onChangeText={(text) => {
+                     setFirstName(text);
+                     setError({
+                       hasError: false,
+                       field: "",
+                       errorMessage: "",
+                     });
+                   }}
+                 />
+                 {error.hasError && error.field === "firstName" && (
+                   <Text style={[styles.inputLabel, styles.errorText]}>
+                     {error.errorMessage}
+                   </Text>
+                 )}
+               </View>
+               <View style={styles.inputSplitContainer}>
+                 <TextInput
+                   placeholder="Last Name"
+                   style={styles.input}
+                   value={lastName}
+                   onChangeText={(text) => setLastName(text)}
+                 />
+               </View>
+             </View>
+             <View style={styles.inputSplit}>
+               <View style={styles.inputSplitContainer}>
+                 <TextInput
+                   placeholder="Address 1"
+                   style={styles.input}
+                   value={address1}
+                   onChangeText={(text) => setAddress1(text)}
+                 />
+               </View>
+               <View style={styles.inputSplitContainer}>
+                 <TextInput
+                   placeholder="Address 2"
+                   style={styles.input}
+                   value={address2}
+                   onChangeText={(text) => setAddress2(text)}
+                 />
+               </View>
+             </View>
+             <View style={styles.inputSplit}>
+               <View style={styles.inputSplitContainer}>
+                 <TextInput
+                   placeholder="City"
+                   style={styles.input}
+                   value={city}
+                   onChangeText={(text) => setCity(text)}
+                 />
+               </View>
+               <View style={styles.inputSplitContainer}>
+                 <TextInput
+                   placeholder="State"
+                   style={styles.input}
+                   value={state}
+                   onChangeText={(text) => setState(text)}
+                 />
+               </View>
+             </View>
+             <View style={styles.inputSplit}>
+               <View style={styles.inputSplitContainer}>
+                 <TextInput
+                   placeholder="Zip"
+                   style={styles.input}
+                   value={zip}
+                   onChangeText={(text) => setZip(text)}
+                 />
+               </View>
+             </View>
+           </View>
+           <View style={styles.buttonContainer}>
+             <Button title="Next" color={colors.secondary} onPress={next} />
+           </View>
+         </SafeAreaView>
+       </KeyboardAvoidingView>
+     );
+   }
 
 ## Creating the Form Context
 

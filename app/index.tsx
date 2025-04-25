@@ -15,7 +15,7 @@ export default function Index()
 
   const onAddCustomer = () =>
   {
-    router.push("/add");
+    router.push("/AddCustomer");
   }
 
   const onAllCustomers = () =>
