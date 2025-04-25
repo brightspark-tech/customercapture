@@ -521,6 +521,7 @@ Now, let's create the home screen with navigation options:
        </KeyboardAvoidingView>
      );
    }
+  ```
 
 ## Updating All Customers Screen
 1. **Open the `AllCustomers.tsx` file** and replace its content with the following:
