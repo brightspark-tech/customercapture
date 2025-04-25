@@ -312,7 +312,7 @@ Now, let's create the home screen with navigation options:
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="AllCustomers" options={{ title: "All Customers" }} />
-        <Stack.Screen name="add" options={{ title: "Add Customer" }} />
+        <Stack.Screen name="AddCustomer" options={{ title: "Add Customer" }} />
       </Stack>
     );
   }
