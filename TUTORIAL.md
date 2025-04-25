@@ -426,102 +426,102 @@ export default function Index() {
     };
 
     return (
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "padding"}
-        style={styles.keyboardAvoidContainer}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 200}
-      >
-        <SafeAreaView style={styles.container}>
-          <View style={styles.screenHeader}>
-            <TouchableOpacity style={styles.backButton} onPress={onBack}>
-              <Ionicons name="arrow-back-outline" size={24} color={colors.text} />
-            </TouchableOpacity>
-            <Text style={styles.h1}>Add New Customer</Text>
-          </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "padding"}
+      style={styles.keyboardAvoidContainer}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 200}
+    >
+      <SafeAreaView style={styles.container}>
+        <View style={styles.screenHeader}>
+          <TouchableOpacity style={styles.backButton} onPress={onBack}>
+            <Ionicons name="arrow-back-outline" size={24} color={colors.text} />
+          </TouchableOpacity>
+          <Text style={styles.h1}>Add New Customer</Text>
+        </View>
 
-          <View style={styles.formContainer}>
-            <View style={styles.inputSplit}>
-              <View style={styles.inputSplitContainer}>
-                <TextInput
-                  placeholder="First Name"
-                  style={[styles.input, error.hasError && styles.inputError]}
-                  value={firstName}
-                  onChangeText={(text) => {
-                    setFirstName(text);
-                    setError({
-                      hasError: false,
-                      field: "",
-                      errorMessage: "",
-                    });
-                  }}
-                />
-                {error.hasError && error.field === "firstName" && (
-                  <Text style={[styles.inputLabel, styles.errorText]}>
-                    {error.errorMessage}
-                  </Text>
-                )}
-              </View>
-              <View style={styles.inputSplitContainer}>
-                <TextInput
-                  placeholder="Last Name"
-                  style={styles.input}
-                  value={lastName}
-                  onChangeText={(text) => setLastName(text)}
-                />
-              </View>
+        <View style={styles.formContainer}>
+          <View style={styles.inputSplit}>
+            <View style={styles.inputSplitContainer}>
+              <TextInput
+                placeholder="First Name"
+                style={[styles.input, error.hasError && styles.inputError]}
+                value={firstName}
+                onChangeText={(text) => {
+                  setFirstName(text);
+                  setError({
+                    hasError: false,
+                    field: "",
+                    errorMessage: "",
+                  });
+                }}
+              />
+              {error.hasError && error.field === "firstName" && (
+                <Text style={[styles.inputLabel, styles.errorText]}>
+                  {error.errorMessage}
+                </Text>
+              )}
             </View>
-            <View style={styles.inputSplit}>
-              <View style={styles.inputSplitContainer}>
-                <TextInput
-                  placeholder="Address 1"
-                  style={styles.input}
-                  value={address1}
-                  onChangeText={(text) => setAddress1(text)}
-                />
-              </View>
-              <View style={styles.inputSplitContainer}>
-                <TextInput
-                  placeholder="Address 2"
-                  style={styles.input}
-                  value={address2}
-                  onChangeText={(text) => setAddress2(text)}
-                />
-              </View>
-            </View>
-            <View style={styles.inputSplit}>
-              <View style={styles.inputSplitContainer}>
-                <TextInput
-                  placeholder="City"
-                  style={styles.input}
-                  value={city}
-                  onChangeText={(text) => setCity(text)}
-                />
-              </View>
-              <View style={styles.inputSplitContainer}>
-                <TextInput
-                  placeholder="State"
-                  style={styles.input}
-                  value={state}
-                  onChangeText={(text) => setState(text)}
-                />
-              </View>
-            </View>
-            <View style={styles.inputSplit}>
-              <View style={styles.inputSplitContainer}>
-                <TextInput
-                  placeholder="Zip"
-                  style={styles.input}
-                  value={zip}
-                  onChangeText={(text) => setZip(text)}
-                />
-              </View>
+            <View style={styles.inputSplitContainer}>
+              <TextInput
+                placeholder="Last Name"
+                style={styles.input}
+                value={lastName}
+                onChangeText={(text) => setLastName(text)}
+              />
             </View>
           </View>
-          <View style={styles.buttonContainer}>
-            <Button title="Next" color={colors.secondary} onPress={next} />
+          <View style={styles.inputSplit}>
+            <View style={styles.inputSplitContainer}>
+              <TextInput
+                placeholder="Address 1"
+                style={styles.input}
+                value={address1}
+                onChangeText={(text) => setAddress1(text)}
+              />
+            </View>
+            <View style={styles.inputSplitContainer}>
+              <TextInput
+                placeholder="Address 2"
+                style={styles.input}
+                value={address2}
+                onChangeText={(text) => setAddress2(text)}
+              />
+            </View>
           </View>
-        </SafeAreaView>
-      </KeyboardAvoidingView>
+          <View style={styles.inputSplit}>
+            <View style={styles.inputSplitContainer}>
+              <TextInput
+                placeholder="City"
+                style={styles.input}
+                value={city}
+                onChangeText={(text) => setCity(text)}
+              />
+            </View>
+            <View style={styles.inputSplitContainer}>
+              <TextInput
+                placeholder="State"
+                style={styles.input}
+                value={state}
+                onChangeText={(text) => setState(text)}
+              />
+            </View>
+          </View>
+          <View style={styles.inputSplit}>
+            <View style={styles.inputSplitContainer}>
+              <TextInput
+                placeholder="Zip"
+                style={styles.input}
+                value={zip}
+                onChangeText={(text) => setZip(text)}
+              />
+            </View>
+          </View>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button title="Next" color={colors.secondary} onPress={next} />
+        </View>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
     );
   }
 ```
@@ -529,7 +529,7 @@ export default function Index() {
 ## Updating All Customers Screen
 1. **Open the `AllCustomers.tsx` file** and replace its content with the following:
 
-   ```typescript
+  ```typescript
   import { Text, View, SafeAreaView, TouchableOpacity, FlatList, TextInput, Button, ActivityIndicator } from "react-native";
   import Ionicons from "@expo/vector-icons/Ionicons";
   import { useRouter } from "expo-router";
@@ -587,7 +587,7 @@ export default function Index() {
           subscribed_to_sms
         }
       }
-      `;
+    `;
 
       isLoading(true);
       try {
@@ -653,27 +653,27 @@ export default function Index() {
           <Text style={styles.h1}>All Customers</Text>
         </View>
 
-        {loading ? (
-          <ActivityIndicator size="large" color={colors.primary} />
-        ) : (
-          <FlatList
-            data={customers}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            contentContainerStyle={styles.customerList}
-            showsVerticalScrollIndicator={true}
-            ItemSeparatorComponent={() => <View style={styles.customerItemBorder} />}
-          />
-        )}
+      {loading ? (
+        <ActivityIndicator size="large" color={colors.primary} />
+      ) : (
+        <FlatList
+          data={customers}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.customerList}
+          showsVerticalScrollIndicator={true}
+          ItemSeparatorComponent={() => <View style={styles.customerItemBorder} />}
+        />
+      )}
 
-        {modalOpen && selectedCustomer && (
-          <EditCustomerModal
-            visible={modalOpen}
-            onClose={closeEditModal}
-            customer={selectedCustomer}
-            onCustomerUpdated={handleCustomerUpdated}
-          />
-        )}
+      {modalOpen && selectedCustomer && (
+        <EditCustomerModal
+          visible={modalOpen}
+          onClose={closeEditModal}
+          customer={selectedCustomer}
+          onCustomerUpdated={handleCustomerUpdated}
+        />
+      )}
       </SafeAreaView>
     );
   }
