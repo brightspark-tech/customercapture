@@ -38,12 +38,6 @@ Before we begin, you'll need to set up your development environment:
    npm install -g expo-cli
    ```
 
-3. **Install Visual Studio Code**
-   - Download from [code.visualstudio.com](https://code.visualstudio.com/)
-   - Recommended extensions: ESLint, Prettier, React Native Tools
-
-4. **Install Expo Go on your mobile device**
-   - Available on [App Store](https://apps.apple.com/app/apple-store/id982107779) or [Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent)
 
 ## Creating the Project
 
@@ -67,11 +61,14 @@ Let's start by creating a new Expo project:
 
 4. **Start the development server**
    ```bash
-   npm start
+   npx expo start
    ```
 
-5. **Open the app on your device**
-   - Scan the QR code with Expo Go (Android) or Camera app (iOS)
+5. **Launch an Android emulator**
+   ```bash
+   a
+   ```
+
 
 ## Building the Home Screen
 
