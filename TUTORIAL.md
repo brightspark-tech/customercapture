@@ -318,57 +318,60 @@ Now, let's create the home screen with navigation options:
   ```
 
 ## Updating the index and add screens
+
 1. **Open index.tsx and modify the file**
+
 ```typescript
-  import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
-  import Ionicons from "@expo/vector-icons/Ionicons";
-  import { useRouter } from "expo-router";
+import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useRouter } from "expo-router";
 
-  // Import constants
-  import colors from "@/constants/colors";
-  import styles from "@/constants/styles";
+// Import constants
+import colors from "@/constants/colors";
+import styles from "@/constants/styles";
 
-  export default function Index() {
-    const router = useRouter();
+export default function Index() {
+  const router = useRouter();
 
-    const onAddCustomer = () => {
-      router.push("/add");
-    };
+  const onAddCustomer = () => {
+    router.push("/add");
+  };
 
-    const onAllCustomers = () => {
-      router.push("/AllCustomers");
-    };
+  const onAllCustomers = () => {
+    router.push("/AllCustomers");
+  };
 
-    return (
-      <SafeAreaView style={styles.container}>
-        <View>
-          <Text style={styles.h1}>Customer Capture</Text>
-        </View>
-        <View style={styles.cardGroup}>
-          <TouchableOpacity style={styles.cardContainer} onPress={onAddCustomer}>
-            <View style={styles.cardHeader}>
-              <Ionicons name="add-circle-outline" size={24} color={colors.white} />
-              <Text style={styles.cardHeaderText}>Add New Customer</Text>
-            </View>
-          </TouchableOpacity>
+  return (
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text style={styles.h1}>Customer Capture</Text>
+      </View>
+      <View style={styles.cardGroup}>
+        <TouchableOpacity style={styles.cardContainer} onPress={onAddCustomer}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="add-circle-outline" size={24} color={colors.white} />
+            <Text style={styles.cardHeaderText}>Add New Customer</Text>
+          </View>
+        </TouchableOpacity>
 
-          <TouchableOpacity style={styles.cardContainer} onPress={onAllCustomers}>
-            <View style={styles.cardHeader}>
-              <Ionicons name="eye" size={24} color={colors.white} />
-              <Text style={styles.cardHeaderText}>View All Customers</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    );
-  }
-  ```
+        <TouchableOpacity style={styles.cardContainer} onPress={onAllCustomers}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="eye" size={24} color={colors.white} />
+            <Text style={styles.cardHeaderText}>View All Customers</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+}
+```
+
 ## Updating the Add Screen
 
 1. **Open the `AddCustomer.tsx` file** and replace its content with the following:
 
    ```typescript
-   import { Text, View, SafeAreaView, TouchableOpacity, TextInput, Button, KeyboardAvoidingView, Platform } from "react-native";
+import { Text, View, SafeAreaView, TouchableOpacity, TextInput, Button, KeyboardAvoidingView, Platform } from "react-native";
    import Ionicons from "@expo/vector-icons/Ionicons";
    import React, { useState } from "react";
    import { useRouter } from "expo-router";
@@ -521,21 +524,21 @@ Now, let's create the home screen with navigation options:
        </KeyboardAvoidingView>
      );
    }
-  ```
+```
 
 ## Updating All Customers Screen
 1. **Open the `AllCustomers.tsx` file** and replace its content with the following:
 
    ```typescript
-   import { Text, View, SafeAreaView, TouchableOpacity, FlatList, TextInput, Button, ActivityIndicator } from "react-native";
-  import Ionicons from "@expo/vector-icons/Ionicons";
-  import { useRouter } from "expo-router";
-  import React, { useState, useEffect } from 'react'
+import { Text, View, SafeAreaView, TouchableOpacity, FlatList, TextInput, Button, ActivityIndicator } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useRouter } from "expo-router";
+import React, { useState, useEffect } from 'react'
 
-  //import  constants
-  import colors from "@/constants/colors";
-  import styles from "@/constants/styles";
-  import EditCustomerModal from "@/components/EditCustomerModal";
+// Import constants
+import colors from "@/constants/colors";
+import styles from "@/constants/styles";
+import EditCustomerModal from "@/components/EditCustomerModal";
 
   interface Customer
   {
@@ -685,7 +688,7 @@ Now, let's create the home screen with navigation options:
           </SafeAreaView>
       );
   }
-  ```
+```
 
 ## Creating the Form Context
 
