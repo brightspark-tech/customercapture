@@ -65,7 +65,7 @@ export default function AllCustomers()
         isLoading(true);
         try
         {
-            const response = await fetch('http://192.168.68.55:8080/graphql', {
+            const response = await fetch('https://customer-capture-backend-866938565525.us-central1.run.app/graphql', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
