@@ -12,6 +12,7 @@ This tutorial will guide high school students through building a mobile applicat
 6. [Updating All Customers Screen](#updating-all-customers-screen)
 7. [Creating the Form Context](#creating-the-form-context)
 
+## Run commands in separate command prompt, not in VS
 
 ## Creating the Project
 
