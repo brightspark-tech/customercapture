@@ -4,45 +4,25 @@ This tutorial will guide high school students through building a mobile applicat
 
 ## Table of Contents
 
-1. [Project Overview](#project-overview)
-2. [Setting Up Your Development Environment](#setting-up-your-development-environment)
-3. [Creating the Project](#creating-the-project)
-4. [Building the Home Screen](#building-the-home-screen)
-5. [Updating the index and add screens](#updating-the-index-and-add-screens)
-6. [Updating the Add Screen](#updating-the-add-screen)
-7. [Updating All Customers Screen](#updating-all-customers-screen)
-8. [Creating the Form Context](#creating-the-form-context)
-
-
-
-## Project Overview
-
-The Customer Capture app allows businesses to collect and manage customer information. Key features include:
-
-- A home screen with navigation options
-- A multi-step form for collecting customer information
-- Storage and retrieval of customer data
-- Ability to view and edit existing customer records
-
-## Setting Up Your Development Environment
-
-Before we begin, you'll need to set up your development environment:
-
-1. **Install Node.js and npm**
-   - Download and install from [nodejs.org](https://nodejs.org/)
-   - Verify installation: `node -v` and `npm -v`
-
-2. **Install Expo CLI**
-   ```bash
-   npm install -g expo-cli
-   ```
+1. [Creating the Project](#creating-the-project)
+2. [Reset the Project to a Default State](#reset-the-project-to-a-default-state)
+3. [Building the Home Screen](#building-the-home-screen)
+4. [Updating the Index and Add Screens](#updating-the-index-and-add-screens)
+5. [Updating the Add Screen](#updating-the-add-screen)
+6. [Updating All Customers Screen](#updating-all-customers-screen)
+7. [Creating the Form Context](#creating-the-form-context)
 
 
 ## Creating the Project
 
+**Install Expo CLI**
+   ```bash
+   npm install -g expo-cli
+   ```
+
 Let's start by creating a new Expo project:
 
-1. **Create a new project**
+1. **Create a new project in your user directory - Not in your OneDrive**
    ```bash
    npx create-expo-app CustomerCapture --template
    ```
