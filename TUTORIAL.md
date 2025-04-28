@@ -76,13 +76,25 @@ Let's start by creating a new Expo project:
   cd ..
   ```
 
-6. Restart the expo server
+6. Remove the main app directory with the following command:
+
+  ```bash
+  rm -rf app
+  ```
+
+7. Move the /scripts/app directory to the right location
+
+  ```bash
+  mv app ../
+  ```
+
+8. Restart the expo server
 
   ```
   npx expo start
   ```
 
-7. Once the server is running
+9. Once the server is running
 
   ```
   a
