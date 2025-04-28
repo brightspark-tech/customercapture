@@ -46,7 +46,7 @@ Let's start by creating a new Expo project:
    ```bash
    npx create-expo-app CustomerCapture --template
    ```
-   Choose the "Tabs (TypeScript)" template when prompted.
+   Choose the "Default" template when prompted.
 
 2. **Navigate to your project directory**
    ```bash
@@ -63,10 +63,51 @@ Let's start by creating a new Expo project:
    npx expo start
    ```
 
-5. **Launch an Android emulator**
+5. **Once the development server is running - open an Android emulator**
    ```bash
    a
    ```
+
+## Reset the project to a default state
+
+1. Once you have verified that the app is running stop the metro server
+
+  ```bash
+  ctrl + c
+  ```
+
+2. Change directory to your scripts folder
+
+  ```bash
+  cd scripts
+  ```
+
+3. Run the reset script
+
+  ```bash
+  node reset-project.js
+  ```
+
+4. Choose 'N' and hit enter
+
+5. cd back to the main folder
+
+  ```bash
+  cd ..
+  ```
+
+6. Restart the expo server
+
+  ```
+  npx expo start
+  ```
+
+7. Once the server is running
+
+  ```
+  a
+  ```
+
 
 
 ## Building the Home Screen
