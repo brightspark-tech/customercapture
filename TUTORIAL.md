@@ -56,45 +56,19 @@ Let's start by creating a new Expo project:
   ctrl + c
   ```
 
-2. Change directory to your scripts folder
-
-  ```bash
-  cd scripts
-  ```
-
-3. Run the reset script
-
-  ```bash
-  node reset-project.js
-  ```
-
-4. Choose 'N' and hit enter
-
-5. cd back to the main folder
-
-  ```bash
-  cd ..
-  ```
-
-6. Remove the main app directory with the following command:
-
-  ```bash
-  rm -rf app
-  ```
-
-7. Move the /scripts/app directory to the right location
-
-  ```bash
-  mv app ../
-  ```
-
-8. Restart the expo server
+2. Run the reset script
+   
+   ```bash
+   npm run reset-project
+   ```
+   
+3. Restart the expo server
 
   ```
   npx expo start
   ```
 
-9. Once the server is running
+4. Once the server is running
 
   ```
   a
