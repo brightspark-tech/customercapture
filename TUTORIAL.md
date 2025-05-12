@@ -468,7 +468,7 @@ export default function Index() {
   const router = useRouter();
 
   const onAddCustomer = () => {
-    router.push("/add");
+    router.push("/AddCustomer");
   };
 
   const onAllCustomers = () => {
