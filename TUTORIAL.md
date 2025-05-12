@@ -29,9 +29,10 @@ Let's start by creating a new Expo project:
    ```
    Choose the "Default" template when prompted.
 
-2. **Navigate to your project directory**
+2. **Navigate to your project directory and open in VSCode**
    ```bash
    cd CustomerCapture
+   code .
    ```
 
 3. **Install required dependencies**
@@ -57,45 +58,21 @@ Let's start by creating a new Expo project:
   ctrl + c
   ```
 
-2. Change directory to your scripts folder
+2. Run the reset script
 
   ```bash
-  cd scripts
-  ```
-
-3. Run the reset script
-
-  ```bash
-  node reset-project.js
+  npm run reset-project
   ```
 
 4. Choose 'N' and hit enter
-
-5. cd back to the main folder
-
-  ```bash
-  cd ..
-  ```
-
-6. Remove the main app directory with the following command:
-
-  ```bash
-  rm -rf app
-  ```
-
-7. Move the /scripts/app directory to the right location
-
-  ```bash
-  mv app ../
-  ```
-
-8. Restart the expo server
+   
+5. Restart the expo server
 
   ```
   npx expo start
   ```
 
-9. Once the server is running
+6. Once the server is running
 
   ```
   a
